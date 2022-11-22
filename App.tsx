@@ -7,88 +7,40 @@
  *
  * @format
  */
+import 'react-native-gesture-handler';
 import React, {type PropsWithChildren} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
 } from 'react-native';
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 
-const Section: React.FC<
-  PropsWithChildren<{
-    title: string;
-  }>
-> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
+const Stack = createStackNavigator();
+
+const SplashScreen =()=> {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
+    <View>
+      <Text>
+        Nguyen Van Hung
       </Text>
     </View>
   );
-};
+}
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Sua file <Text style={styles.highlight}>App.tsx</Text> De thay
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Doc tai lieu de biet them chi tiet
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+   <NavigationContainer>
+    <Stack.Navigator initialRouteName='SplashScreen'>
+      <Stack.Screen name='SplashScreen' component={SplashScreen} options={{headerShown: false}}/>
+      <Stack.Screen name='SplashScreen1' component={SplashScreen} options={{headerShown: false}}/>
+      <Stack.Screen name='SplashScreen2' component={SplashScreen} options={{headerShown: false}}/>
+    </Stack.Navigator>
+   </NavigationContainer>
   );
 };
 const styles = StyleSheet.create({
@@ -99,6 +51,9 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     fontWeight: '600',
+    display: 'flex',
+    alignSelf: 'center',
+    color: 'green',
   },
   sectionDescription: {
     marginTop: 8,
